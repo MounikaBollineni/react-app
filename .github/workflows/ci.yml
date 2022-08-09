@@ -1,24 +1,20 @@
-
-name: Csdvnjeghe
-
-on:
-  pull_request:
+name: CI
+on: 
+  pull_request: 
     branches: [develop]
 
 jobs:
-  workflow_react:
+  build: 
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: nodeJS
+      - name: use nodeJS
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
       - run: npm ci
       - run: npm run format:check
-      - run: npm test-- --coverage
-        env:
+      - run: npm test -- --coverage
+        env: 
           CI: true
 
-     
